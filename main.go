@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 type Person struct {
@@ -87,6 +88,7 @@ func getAllPersons() ([]Person, error) {
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Print(err.Error())
+		log.Fatal(err)
 		return nil, err
 	}
 
@@ -107,6 +109,7 @@ func getAllProfessions() ([]Profession, error) {
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Print(err.Error())
+		log.Fatal(err)
 		return nil, err
 	}
 
@@ -130,6 +133,7 @@ func handleRequests() {
 }
 
 func main() {
+	fmt.Println("Starting: kub-train-go-be-cli Endpoint")
 	myConfig = Config{
 		GoBeAUrl:  "localhost",
 		GoBeAPort: 4880,

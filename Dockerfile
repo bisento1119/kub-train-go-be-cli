@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 #FROM alpine:3.18
-FROM ubuntu:latest
+FROM amd64/ubuntu:22.04
 
 
 WORKDIR /.

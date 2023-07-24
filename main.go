@@ -134,10 +134,10 @@ func handleRequests() {
 func main() {
 	fmt.Println("Starting: kub-train-go-be-cli Endpoint")
 	myConfig = Config{
-		GoBeAUrl:  "localhost",
+		GoBeAUrl:  "kub-train-go-be-a",
 		GoBeAPort: 4880,
 		GoBeAPath: "persons",
-		GoBeBUrl:  "localhost",
+		GoBeBUrl:  "kub-train-go-be-b",
 		GoBeBPort: 4881,
 		GoBeBPath: "professions",
 	}

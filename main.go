@@ -87,7 +87,7 @@ func getAllPersons() ([]Person, error) {
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Print(err.Error())
-		log.Fatal(err)
+		log.Error(err)
 		return nil, err
 	}
 
@@ -108,7 +108,7 @@ func getAllProfessions() ([]Profession, error) {
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Print(err.Error())
-		log.Fatal(err)
+		log.Error(err)
 		return nil, err
 	}
 

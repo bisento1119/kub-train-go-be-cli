@@ -162,5 +162,7 @@ func readConfig() {
 func main() {
 	fmt.Println("Starting: kub-train-go-be-cli Endpoint")
 
+	readConfig()
+
 	handleRequests()
 }

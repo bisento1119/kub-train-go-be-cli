@@ -34,10 +34,10 @@ type Professionals struct {
 }
 
 type Config struct {
-	GoBeAUrl  string
+	GoBeAHost string
 	GoBeAPort int
 	GoBeAPath string
-	GoBeBUrl  string
+	GoBeBHost string
 	GoBeBPort int
 	GoBeBPath string
 }
@@ -85,7 +85,7 @@ func returnAllProfessionals(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAllPersons() ([]Person, error) {
-	var url = fmt.Sprintf("http://%v:%d/%v", myConfig.GoBeAUrl, myConfig.GoBeAPort, myConfig.GoBeAPath)
+	var url = fmt.Sprintf("http://%v:%d/%v", myConfig.GoBeAHost, myConfig.GoBeAPort, myConfig.GoBeAPath)
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Print(err.Error())
@@ -106,7 +106,7 @@ func getAllPersons() ([]Person, error) {
 }
 
 func getAllProfessions() ([]Profession, error) {
-	var url = fmt.Sprintf("http://%v:%d/%v", myConfig.GoBeBUrl, myConfig.GoBeBPort, myConfig.GoBeBPath)
+	var url = fmt.Sprintf("http://%v:%d/%v", myConfig.GoBeBHost, myConfig.GoBeBPort, myConfig.GoBeBPath)
 	response, err := http.Get(url)
 	if err != nil {
 		fmt.Print(err.Error())
@@ -135,10 +135,10 @@ func handleRequests() {
 
 func readConfig() {
 	myConfig = Config{
-		GoBeAUrl:  "kub-train-go-be-a",
+		GoBeAHost: "kub-train-go-be-a",
 		GoBeAPort: 4880,
 		GoBeAPath: "persons",
-		GoBeBUrl:  "kub-train-go-be-b",
+		GoBeBHost: "kub-train-go-be-b",
 		GoBeBPort: 4881,
 		GoBeBPath: "professions",
 	}
@@ -155,8 +155,8 @@ func readConfig() {
 		log.Fatal(err)
 		panic(err)
 	}
-	myConfig.GoBeAPath = viper.GetString("be-go-a.host")
-	myConfig.GoBeBPath = viper.GetString("be-go-b.host")
+	myConfig.GoBeAHost = viper.GetString("be-go-a.host")
+	myConfig.GoBeBHost = viper.GetString("be-go-b.host")
 }
 
 func main() {

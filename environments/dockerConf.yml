@@ -1,0 +1,4 @@
+be-go-a:
+  host: kub-train-go-be-a
+be-go-b:
+  host: kub-train-go-be-b

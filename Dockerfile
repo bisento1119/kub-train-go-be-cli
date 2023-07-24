@@ -8,6 +8,7 @@ WORKDIR /.
 
 # Download Go modules
 COPY ./go-be-cli ./
+COPY ./environments/dockerConf.yml ./environments/localConf.yml
 
 # Set destination for COPY
 

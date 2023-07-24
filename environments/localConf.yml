@@ -1,0 +1,4 @@
+be-go-a:
+  host: localhost
+be-go-b:
+  host: localhost

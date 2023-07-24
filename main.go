@@ -6,9 +6,11 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 type Person struct {
@@ -131,8 +133,7 @@ func handleRequests() {
 	log.Fatal(http.ListenAndServe(":4882", myRouter))
 }
 
-func main() {
-	fmt.Println("Starting: kub-train-go-be-cli Endpoint")
+func readConfig() {
 	myConfig = Config{
 		GoBeAUrl:  "kub-train-go-be-a",
 		GoBeAPort: 4880,
@@ -141,6 +142,25 @@ func main() {
 		GoBeBPort: 4881,
 		GoBeBPath: "professions",
 	}
+
+	viper.SetConfigName("localConf")
+	viper.AddConfigPath("./environments")
+
+	replacer := strings.NewReplacer(".", "_")
+	viper.SetEnvKeyReplacer(replacer)
+	viper.AutomaticEnv()
+
+	err := viper.ReadInConfig()
+	if err != nil {
+		log.Fatal(err)
+		panic(err)
+	}
+	myConfig.GoBeAPath = viper.GetString("be-go-a.host")
+	myConfig.GoBeBPath = viper.GetString("be-go-b.host")
+}
+
+func main() {
+	fmt.Println("Starting: kub-train-go-be-cli Endpoint")
 
 	handleRequests()
 }

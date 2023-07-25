@@ -1,4 +1,4 @@
 be-go-a:
-  host: kub-train-go-be-a
+  host: go-be-a-svc
 be-go-b:
-  host: kub-train-go-be-b
+  host: go-be-b-svc
